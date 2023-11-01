@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Price Predictor</title>
+    <style>
+        body {
+            background-image: url("{% static 'footer-art.svg' %}");
+            background-size: 1800px 245px;
+            background-repeat: no-repeat;
+            background-position: center bottom; /* Place the background at the bottom */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(24, 66, 164, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #000000;
+            color: white;
+            cursor: pointer;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Housing Price Prediction</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label>
+                Location
+                <input type="text" name="location" required value=`{{ location }}`/>
+            </label>
+            <br />
+            <label>
+                Total SqFt
+                <input type="number" name="sqft" required value=`{{ sqft }}`/>
+            </label>
+            <br />
+            <label>
+                Bath
+                <input type="number" name="bath" required value=`{{ bath }}`/>
+            </label>
+            <br />
+            <label>
+                Total BHK
+                <input type="number" name="bhk" required value=`{{ BHK }}`/>
+            </label>
+            <br />
+            <input type="submit" />
+        </form>
+        <br />
+        <!-- {% if result %} -->
+        <h2>The predicted value is &#8377; {{ result }} Lakh</h2>
+        <!-- {% endif %} -->
+    </div>
+
+</body>
+</html>
